@@ -1,0 +1,12 @@
+{{- if .Values.configMap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "gke-lab-app.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "gke-lab-app.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+data:
+  {{- toYaml .Values.configMap.data | nindent 2 }}
+{{- end }}
+

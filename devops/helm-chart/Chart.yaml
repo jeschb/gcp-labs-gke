@@ -1,0 +1,7 @@
+apiVersion: v2
+name: gke-lab-app
+description: Helm chart para desplegar la landing page Node.js del laboratorio GKE
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+

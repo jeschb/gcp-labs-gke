@@ -1,0 +1,61 @@
+replicaCount: 2
+
+nameOverride: ""
+fullnameOverride: ""
+
+image:
+  repository: "REGISTRY_GCP_AQUI/REPOSITORIO/gke-lab-app"
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+imagePullSecrets: []
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+configMap:
+  enabled: true
+  data:
+    APP_NAME: "GKE Lab App"
+    APP_ENV: "production"
+    WELCOME_MESSAGE: "Laboratorio de Helm sobre GKE en Google Cloud"
+
+secret:
+  enabled: true
+  data:
+    APP_OWNER: "SW5nLiBKZXPDqXMgQW50b25pbyBDaMOhdmV6IEJlY2VycmE="
+    APP_EMAIL: "amVzY2hiQGdtYWlsLmNvbQ=="
+    APP_WORKPLACE: "ZGV2c2Vjb3BzLnBl"
+
+service:
+  type: LoadBalancer
+  port: 80
+  annotations: {}
+  loadBalancerIP: ""
+  externalTrafficPolicy: Cluster
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: gke-lab.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources: {}
+
+securityContext: {}
+
+containerSecurityContext: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
