@@ -1,0 +1,55 @@
+# =============================
+# PROYECTO Y UBICACIÓN
+# =============================
+export PROJECT_ID=$(gcloud config get-value project)
+export REGION=us-central1
+export ZONE=us-central1-a
+
+# =============================
+# CLUSTER
+# =============================
+export CLUSTER_NAME=gke-lab-cluster
+export GKE_VERSION="1.35.2-gke.1485000"
+
+# =============================
+# NODOS
+# =============================
+export MACHINE_TYPE=e2-medium
+export NUM_NODES=3
+export DISK_SIZE=50
+
+# =============================
+# RED
+# =============================
+export NETWORK=default
+export SUBNETWORK=default
+
+
+# =============================
+# Comando limpio y reutilizable
+# =============================
+gcloud container clusters create ${CLUSTER_NAME} \
+  --project ${PROJECT_ID} \
+  --zone ${ZONE} \
+  --no-enable-basic-auth \
+  --cluster-version ${GKE_VERSION} \
+  --release-channel regular \
+  --machine-type ${MACHINE_TYPE} \
+  --image-type COS_CONTAINERD \
+  --disk-type pd-standard \
+  --disk-size ${DISK_SIZE} \
+  --metadata disable-legacy-endpoints=true \
+  --service-account default \
+  --scopes https://www.googleapis.com/auth/cloud-platform \
+  --max-pods-per-node 60 \
+  --num-nodes ${NUM_NODES} \
+  --logging=SYSTEM \
+  --monitoring=SYSTEM \
+  --enable-ip-alias \
+  --network ${NETWORK} \
+  --subnetwork ${SUBNETWORK} \
+  --addons HorizontalPodAutoscaling,HttpLoadBalancing,NodeLocalDNS,GcePersistentDiskCsiDriver \
+  --enable-autoupgrade \
+  --enable-autorepair \
+  --node-locations ${ZONE}
+
