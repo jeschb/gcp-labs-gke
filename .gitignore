@@ -29,6 +29,10 @@ out/
 .next/
 .nuxt/
 coverage/
+*.py
+*.docx
+*.pptx
+slides-gke.html
 
 # =========================
 # Caché

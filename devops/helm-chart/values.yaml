@@ -3,8 +3,10 @@ replicaCount: 2
 nameOverride: ""
 fullnameOverride: ""
 
+# Reemplazar PROJECT_ID con el ID real del proyecto GCP antes de desplegar.
+# Ejemplo: us-central1-docker.pkg.dev/mi-proyecto-gcp/gke-lab-repo/gke-lab-app
 image:
-  repository: "REGISTRY_GCP_AQUI/REPOSITORIO/gke-lab-app"
+  repository: "us-central1-docker.pkg.dev/PROJECT_ID/gke-lab-repo/gke-lab-app"
   pullPolicy: IfNotPresent
   tag: "1.0.0"
 
