@@ -1,3 +1,8 @@
+#!/bin/bash
+set -e
+
+echo "🚀 Creando cluster GKE..."
+
 # =============================
 # PROYECTO Y UBICACIÓN
 # =============================
@@ -24,9 +29,8 @@ export DISK_SIZE=50
 export NETWORK=default
 export SUBNETWORK=default
 
-
 # =============================
-# Comando limpio y reutilizable
+# CREACIÓN DEL CLUSTER
 # =============================
 gcloud container clusters create ${CLUSTER_NAME} \
   --project ${PROJECT_ID} \
@@ -53,3 +57,4 @@ gcloud container clusters create ${CLUSTER_NAME} \
   --enable-autorepair \
   --node-locations ${ZONE}
 
+echo "✅ Cluster creado correctamente"
